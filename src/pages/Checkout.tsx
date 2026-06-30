@@ -66,6 +66,13 @@ const Checkout = () => {
     }
   }, [searchParams]);
 
+  // O link de pagamento abre numa nova aba a partir do Blip Chat. A conversa
+  // segue na aba anterior, então "voltar" = fechar esta aba. O navegador só
+  // permite fechar abas abertas via script; quando bloqueia, o usuário fecha manualmente.
+  const voltarAoAtendimento = () => {
+    window.close();
+  };
+
   const updateQuantity = (id: string, quantity: number) => {
     setCartItems(items =>
       items.map(item => (item.id === id ? { ...item, quantity } : item))
@@ -144,12 +151,15 @@ const Checkout = () => {
           </div>
 
           <button
-            onClick={() => window.history.back()}
+            onClick={voltarAoAtendimento}
             className="w-full bg-burger-red hover:bg-burger-red-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors flex items-center justify-center gap-2"
           >
             <MessageCircle size={20} />
-            Voltar ao atendimento
+            Voltar à conversa
           </button>
+          <p className="text-xs text-gray-500 mt-3">
+            Pode fechar esta aba para retornar ao atendimento.
+          </p>
         </div>
         </div>
       </div>
@@ -170,10 +180,10 @@ const Checkout = () => {
               Volte ao atendimento e monte seu combo na Burger Station!
             </p>
             <button
-              onClick={() => window.history.back()}
+              onClick={voltarAoAtendimento}
               className="bg-burger-red hover:bg-burger-red-dark text-white px-6 py-3 rounded-xl font-semibold transition-colors"
             >
-              Voltar ao atendimento
+              Voltar à conversa
             </button>
           </div>
         </div>
@@ -189,9 +199,9 @@ const Checkout = () => {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center gap-4">
             <button
-              onClick={() => window.history.back()}
+              onClick={voltarAoAtendimento}
               className="text-burger-gold hover:text-white transition-colors"
-              aria-label="Voltar"
+              aria-label="Voltar à conversa"
             >
               <ArrowLeft size={24} />
             </button>
