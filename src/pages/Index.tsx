@@ -1,7 +1,7 @@
 
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Sandwich, ShoppingBag, Flame, Bike, ShieldCheck } from 'lucide-react';
+import { Sandwich, ShoppingBag, Flame, Bike, ShieldCheck, Info } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 
 const Index = () => {
@@ -22,6 +22,12 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-burger-cream">
+      <div className="bg-burger-dark text-burger-gold text-center text-xs sm:text-sm px-4 py-2 flex items-center justify-center gap-2">
+        <Info size={14} className="shrink-0" />
+        <span>
+          Página de demonstração criada pela <b className="text-white">Conexxio</b> — nenhum pagamento é processado de verdade.
+        </span>
+      </div>
       <div className="container mx-auto px-4 py-16">
         <div className="text-center max-w-4xl mx-auto">
           {/* Header */}

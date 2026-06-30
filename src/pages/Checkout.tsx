@@ -1,6 +1,6 @@
 
 import React, { useState, useEffect } from 'react';
-import { ArrowLeft, Sandwich, CheckCircle2, Clock, MessageCircle } from 'lucide-react';
+import { ArrowLeft, Sandwich, CheckCircle2, Clock, MessageCircle, Info } from 'lucide-react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import CartItem, { CartItemData } from '@/components/CartItem';
 import OrderSummary, { DeliveryMode } from '@/components/OrderSummary';
@@ -8,6 +8,16 @@ import PaymentGateway from '@/components/PaymentGateway';
 import { toast } from '@/hooks/use-toast';
 
 const DEFAULT_DELIVERY_FEE = 6.0;
+
+// Aviso fixo: deixa claro que é uma demonstração, não uma loja real.
+const DemoBanner = () => (
+  <div className="bg-burger-dark text-burger-gold text-center text-xs sm:text-sm px-4 py-2 flex items-center justify-center gap-2">
+    <Info size={14} className="shrink-0" />
+    <span>
+      Página de demonstração criada pela <b className="text-white">Conexxio</b> — nenhum pagamento é processado de verdade.
+    </span>
+  </div>
+);
 
 const Checkout = () => {
   const [searchParams] = useSearchParams();
@@ -100,7 +110,9 @@ const Checkout = () => {
   // Tela de sucesso (pós-pagamento)
   if (isPaid) {
     return (
-      <div className="min-h-screen bg-burger-cream flex items-center justify-center px-4 py-8">
+      <div className="min-h-screen bg-burger-cream flex flex-col">
+        <DemoBanner />
+        <div className="flex-1 flex items-center justify-center px-4 py-8">
         <div className="bg-white rounded-2xl p-8 shadow-lg max-w-md w-full text-center">
           <CheckCircle2 className="mx-auto text-burger-red mb-4" size={72} />
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
@@ -139,6 +151,7 @@ const Checkout = () => {
             Voltar ao atendimento
           </button>
         </div>
+        </div>
       </div>
     );
   }
@@ -146,6 +159,7 @@ const Checkout = () => {
   if (cartItems.length === 0) {
     return (
       <div className="min-h-screen bg-burger-cream">
+        <DemoBanner />
         <div className="container mx-auto px-4 py-8">
           <div className="text-center">
             <Sandwich className="mx-auto text-burger-red mb-4" size={64} />
@@ -169,6 +183,7 @@ const Checkout = () => {
 
   return (
     <div className="min-h-screen bg-burger-cream">
+      <DemoBanner />
       {/* Header */}
       <div className="bg-burger-dark shadow-sm">
         <div className="container mx-auto px-4 py-4">
