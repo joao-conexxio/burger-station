@@ -7,7 +7,7 @@ export interface CartItemData {
   name: string;
   price: number;
   quantity: number;
-  unit: string;
+  unit?: string;
 }
 
 interface CartItemProps {
@@ -24,7 +24,9 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemove })
       <div className="flex justify-between items-start mb-3">
         <div className="flex-1">
           <h3 className="font-semibold text-gray-800 text-lg">{item.name}</h3>
-          <p className="text-agro-green font-medium">R$ {item.price.toFixed(2)} / {item.unit}</p>
+          <p className="text-burger-red font-medium">
+            R$ {item.price.toFixed(2)}{item.unit ? ` / ${item.unit}` : ' cada'}
+          </p>
         </div>
         <button
           onClick={() => onRemove(item.id)}
@@ -39,7 +41,7 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemove })
         <div className="flex items-center gap-3">
           <button
             onClick={() => onUpdateQuantity(item.id, Math.max(1, item.quantity - 1))}
-            className="bg-agro-cream hover:bg-gray-200 rounded-lg p-2 transition-colors"
+            className="bg-burger-cream hover:bg-burger-gold/40 rounded-lg p-2 transition-colors"
             aria-label="Diminuir quantidade"
           >
             <Minus size={16} />
@@ -49,15 +51,15 @@ const CartItem: React.FC<CartItemProps> = ({ item, onUpdateQuantity, onRemove })
           </span>
           <button
             onClick={() => onUpdateQuantity(item.id, item.quantity + 1)}
-            className="bg-agro-cream hover:bg-gray-200 rounded-lg p-2 transition-colors"
+            className="bg-burger-cream hover:bg-burger-gold/40 rounded-lg p-2 transition-colors"
             aria-label="Aumentar quantidade"
           >
             <Plus size={16} />
           </button>
         </div>
-        
+
         <div className="text-right">
-          <p className="text-xl font-bold text-agro-green">
+          <p className="text-xl font-bold text-burger-red">
             R$ {subtotal.toFixed(2)}
           </p>
         </div>

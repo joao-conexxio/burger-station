@@ -63,11 +63,13 @@ export default {
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
 				},
-				agro: {
-					green: '#6FB14B',
-					cream: '#F0E4D4',
-					'green-dark': '#5A9239',
-					'green-light': '#8BC66A'
+				burger: {
+					red: '#D62828',
+					'red-dark': '#A41E1E',
+					amber: '#F77F00',
+					gold: '#FCBF49',
+					cream: '#FFF4E6',
+					dark: '#2B2118'
 				}
 			},
 			borderRadius: {
